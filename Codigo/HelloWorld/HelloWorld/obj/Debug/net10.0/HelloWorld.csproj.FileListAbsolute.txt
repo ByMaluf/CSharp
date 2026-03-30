@@ -1,0 +1,15 @@
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\bin\Debug\net10.0\HelloWorld.exe
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\bin\Debug\net10.0\HelloWorld.deps.json
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\bin\Debug\net10.0\HelloWorld.runtimeconfig.json
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\bin\Debug\net10.0\HelloWorld.dll
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\bin\Debug\net10.0\HelloWorld.pdb
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\HelloWorld.AssemblyInfoInputs.cache
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\HelloWorld.AssemblyInfo.cs
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\HelloWorld.csproj.CoreCompileInputs.cache
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\HelloWorld.sourcelink.json
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\HelloWorld.dll
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\refint\HelloWorld.dll
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\HelloWorld.pdb
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\HelloWorld.genruntimeconfig.cache
+C:\Users\brenn\source\repos\ByMaluf\CSharp\Codigo\HelloWorld\HelloWorld\obj\Debug\net10.0\ref\HelloWorld.dll
