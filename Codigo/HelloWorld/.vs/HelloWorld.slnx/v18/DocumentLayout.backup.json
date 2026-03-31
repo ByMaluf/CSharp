@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C31ADF43-DD94-463E-AE4F-5372925BEE14}|HelloWorld\\HelloWorld.csproj|c:\\users\\brenn\\source\\repos\\bymaluf\\csharp\\codigo\\helloworld\\helloworld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C31ADF43-DD94-463E-AE4F-5372925BEE14}|HelloWorld\\HelloWorld.csproj|solutionrelative:helloworld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A798C92-DA22-B784-11D5-249F2DEA19E6}|HelloWorld\\HelloWorld.csproj|c:\\users\\brenn\\source\\repos\\bymaluf\\csharp\\codigo\\helloworld\\helloworld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A798C92-DA22-B784-11D5-249F2DEA19E6}|HelloWorld\\HelloWorld.csproj|solutionrelative:helloworld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A798C92-DA22-B784-11D5-249F2DEA19E6}|HelloWorld\\HelloWorld.csproj|c:\\users\\brenn\\source\\repos\\bymaluf\\csharp\\codigo\\helloworld\\helloworld\\carro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A798C92-DA22-B784-11D5-249F2DEA19E6}|HelloWorld\\HelloWorld.csproj|solutionrelative:helloworld\\carro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A798C92-DA22-B784-11D5-249F2DEA19E6}|HelloWorld\\HelloWorld.csproj|c:\\users\\brenn\\source\\repos\\bymaluf\\csharp\\codigo\\helloworld\\helloworld\\teste\\biscoito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A798C92-DA22-B784-11D5-249F2DEA19E6}|HelloWorld\\HelloWorld.csproj|solutionrelative:helloworld\\teste\\biscoito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A798C92-DA22-B784-11D5-249F2DEA19E6}|HelloWorld\\HelloWorld.csproj|c:\\users\\brenn\\source\\repos\\bymaluf\\csharp\\codigo\\helloworld\\helloworld\\helloworld.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3A798C92-DA22-B784-11D5-249F2DEA19E6}|HelloWorld\\HelloWorld.csproj|solutionrelative:helloworld\\helloworld.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,13 +34,52 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Biscoito.cs",
+              "DocumentMoniker": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\Teste\\Biscoito.cs",
+              "RelativeDocumentMoniker": "HelloWorld\\Teste\\Biscoito.cs",
+              "ToolTip": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\Teste\\Biscoito.cs",
+              "RelativeToolTip": "HelloWorld\\Teste\\Biscoito.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T16:59:53.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HelloWorld",
+              "DocumentMoniker": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\HelloWorld.csproj",
+              "RelativeDocumentMoniker": "HelloWorld\\HelloWorld.csproj",
+              "ToolTip": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\HelloWorld.csproj",
+              "RelativeToolTip": "HelloWorld\\HelloWorld.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-31T16:59:40.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Carro.cs",
+              "DocumentMoniker": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\Carro.cs",
+              "RelativeDocumentMoniker": "HelloWorld\\Carro.cs",
+              "ToolTip": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\Carro.cs",
+              "RelativeToolTip": "HelloWorld\\Carro.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T16:49:35.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\Program.cs",
               "RelativeDocumentMoniker": "HelloWorld\\Program.cs",
-              "ToolTip": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\Program.cs",
-              "RelativeToolTip": "HelloWorld\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\brenn\\source\\repos\\ByMaluf\\CSharp\\Codigo\\HelloWorld\\HelloWorld\\Program.cs*",
+              "RelativeToolTip": "HelloWorld\\Program.cs*",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAiwBQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-30T17:05:25.124Z",
               "EditorCaption": ""
