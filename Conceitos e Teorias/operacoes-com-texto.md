@@ -1,5 +1,26 @@
 # Operações com Texto em C#
 
+## 📋 Índice
+1. [Características Fundamentais](#características-fundamentais)
+   - [Imutabilidade](#imutabilidade)
+2. [Criação e Inicialização](#criação-e-inicialização)
+3. [Concatenação de Strings](#concatenação-de-strings)
+4. [Métodos de Transformação](#métodos-de-transformação)
+5. [Métodos de Pesquisa](#métodos-de-pesquisa)
+6. [Divisão e Junção](#divisão-e-junção)
+7. [Formatação](#formatação)
+8. [Comparação de Strings](#comparação-de-strings)
+9. [Verificações](#verificações)
+10. [Propriedades](#propriedades)
+11. [Caracteres Especiais e Escape](#caracteres-especiais-e-escape)
+12. [StringBuilder - Uso Avançado](#stringbuilder---uso-avançado)
+13. [Conversão](#conversão)
+14. [Boas Práticas](#boas-práticas)
+15. [Exemplos Práticos](#exemplos-práticos)
+16. [Recursos Adicionais](#recursos-adicionais)
+
+---
+
 Em C#, textos são representados pelo tipo `string`, que é uma sequência imutável de caracteres Unicode. Este guia apresenta as principais operações e métodos para manipulação de textos.
 
 ## Características Fundamentais

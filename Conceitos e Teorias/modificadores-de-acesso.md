@@ -1,5 +1,31 @@
 # Modificadores de Acesso em C#
 
+## 📋 Índice
+1. [Modificadores Disponíveis](#modificadores-disponíveis)
+   - [public](#1-public)
+   - [private](#2-private)
+   - [protected](#3-protected)
+   - [internal](#4-internal)
+   - [protected internal](#5-protected-internal)
+   - [private protected](#6-private-protected)
+2. [Resumo de Acessibilidade](#resumo-de-acessibilidade)
+3. [Modificadores Padrão](#modificadores-padrão)
+4. [Modificadores por Tipo de Elemento](#modificadores-por-tipo-de-elemento)
+   - [Classes (Top-Level)](#classes-top-level---declaradas-diretamente-no-namespace)
+   - [Classes Aninhadas](#classes-aninhadas-nested-classes)
+   - [Interfaces](#interfaces-top-level)
+   - [Métodos e Funções](#métodos-e-funções)
+   - [Propriedades](#propriedades)
+   - [Campos (Variáveis)](#campos-variáveis-de-classe)
+   - [Construtores](#construtores)
+   - [Structs](#structs)
+   - [Enums](#enums)
+   - [Delegates](#delegates)
+5. [Boas Práticas](#boas-práticas)
+6. [Exemplos Práticos](#exemplos-práticos)
+
+---
+
 Os modificadores de acesso em C# são palavras-chave que definem a acessibilidade de tipos (classes, interfaces, etc.) e membros (métodos, propriedades, campos, etc.). Eles controlam de onde um determinado elemento pode ser acessado no código.
 
 ## Modificadores Disponíveis

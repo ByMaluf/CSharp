@@ -1,5 +1,18 @@
 # IDE, Visual Studio e Visual Studio Code
 
+## 📋 Índice
+1. [O que é uma IDE?](#o-que-é-uma-ide)
+2. [Qual a diferença entre o Visual Studio e o Visual Studio Code?](#qual-a-diferença-entre-o-visual-studio-e-o-visual-studio-code)
+   - [Visual Studio](#visual-studio)
+   - [Visual Studio Code](#visual-studio-code)
+   - [Comparação geral](#comparação-geral)
+3. [Qual a diferença entre uma IDE e um Editor de código avançado?](#qual-a-diferença-entre-uma-ide-e-um-editor-de-código-avançado)
+   - [IDE (Ambiente de Desenvolvimento Integrado)](#ide-ambiente-de-desenvolvimento-integrado)
+   - [Editor de código avançado](#editor-de-código-avançado)
+4. [Resumo](#resumo)
+
+---
+
 ## O que é uma IDE?
 
 Uma **IDE (Ambiente de Desenvolvimento Integrado)** é uma ferramenta essencial para desenvolvedores de software. Ela reúne várias atividades comuns do processo de desenvolvimento em um único programa, tornando o trabalho mais produtivo.
