@@ -240,3 +240,4 @@ Ele:
 | DLL | Arquivo em IL, multiplataforma |
 | EXE | Executável específico para um sistema operacional |
 | Publish | Prepara a aplicação para distribuição, reunindo todas as dependências |
+|URL| https://learn.microsoft.com/pt-br/dotnet/core/tools/
