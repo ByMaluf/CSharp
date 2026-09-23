@@ -1,5 +1,4 @@
-````markdown
-# Endpoint POST e Request Body
+# Endpoint POST, Request e Response
 
 ## 📋 Índice
 
@@ -7,40 +6,32 @@
 2. [Status 201 Created](#status-201-created)
 3. [Organizando Requests e Responses](#organizando-requests-e-responses)
 4. [Criando uma classe de Request](#criando-uma-classe-de-request)
-5. [Inicializando Strings com String.Empty](#inicializando-strings-com-stringempty)
+5. [Evitando valores null com string.Empty](#evitando-valores-null-com-stringempty)
 6. [Recebendo dados pelo Body](#recebendo-dados-pelo-body)
-7. [Testando o POST pelo Swagger](#testando-o-post-pelo-swagger)
-8. [Testando o POST pelo Postman](#testando-o-post-pelo-postman)
-9. [JSON no Body da Request](#json-no-body-da-request)
-10. [Created e o retorno 204](#created-e-o-retorno-204)
-11. [Sobrecarga de métodos](#sobrecarga-de-métodos)
-12. [Retornando dados com Created](#retornando-dados-com-created)
-13. [Criando uma classe de Response](#criando-uma-classe-de-response)
-14. [Documentando o retorno 201 no Swagger](#documentando-o-retorno-201-no-swagger)
-15. [Fluxo completo do POST](#fluxo-completo-do-post)
-16. [Resumo](#resumo)
+7. [Testando pelo Swagger](#testando-pelo-swagger)
+8. [Testando pelo Postman](#testando-pelo-postman)
+9. [Sobrecarga de métodos](#sobrecarga-de-métodos)
+10. [Created e retorno com conteúdo](#created-e-retorno-com-conteúdo)
+11. [Criando uma classe de Response](#criando-uma-classe-de-response)
+12. [Documentando a resposta no Swagger](#documentando-a-resposta-no-swagger)
+13. [Fluxo completo](#fluxo-completo)
+14. [Resumo](#resumo)
 
 ---
 
 ## Criando um Endpoint POST
 
-Até agora trabalhamos principalmente com:
-
-```http
-GET
-```
-
-utilizado para recuperar informações.
-
-Agora vamos criar um Endpoint:
+O método HTTP:
 
 ```http
 POST
 ```
 
-Nesse exemplo, o objetivo será **cadastrar um novo usuário**.
+é utilizado para **criar novos recursos**.
 
-Dentro do `UserController`, podemos criar:
+No contexto de um `UserController`, podemos utilizá-lo para cadastrar um novo usuário.
+
+Exemplo:
 
 ```csharp
 [HttpPost]
@@ -54,106 +45,62 @@ Temos:
 
 ```text
 [HttpPost]
-    │
-    └── Define que o Endpoint utiliza POST
+    ↓
+Define que o Endpoint utiliza POST
 
 Create()
-    │
-    └── Método responsável pela criação
+    ↓
+Método responsável pela criação
 
 IActionResult
-    │
-    └── Tipo do resultado retornado
+    ↓
+Representa o resultado da operação
 ```
 
-Como estamos dentro do:
+Podemos ter:
 
 ```text
-UserController
-```
-
-o contexto do método será a criação de um usuário.
-
----
-
-## GET x POST
-
-Podemos começar a visualizar a diferença:
-
-```text
-UserController
-│
-├── GET  /api/user
-│       └── Recuperar informações
-│
-└── POST /api/user
-        └── Criar um novo usuário
-```
-
-Observe que podemos ter:
-
-```text
-/api/user
-```
-
-para os dois Endpoints.
-
-O que diferencia a operação é o **método HTTP**:
-
-```http
-GET /api/user
-```
-
-e:
-
-```http
+GET  /api/user
 POST /api/user
 ```
+
+O caminho é o mesmo, porém o método HTTP define qual operação será executada.
 
 ---
 
 ## Status 201 Created
 
-Quando uma requisição `POST` cria um novo recurso com sucesso, o Status Code utilizado no exemplo é:
+Quando um novo recurso é criado com sucesso, podemos utilizar:
 
 ```http
 201 Created
 ```
 
-Portanto:
+Fluxo:
 
 ```text
 POST
-  │
-  ▼
+ ↓
 Criar usuário
-  │
-  ▼
-Criação realizada
-  │
-  ▼
+ ↓
+Usuário criado
+ ↓
 201 Created
 ```
 
-No Controller, temos o método:
+No ASP.NET Core, podemos utilizar:
 
 ```csharp
 Created(...)
 ```
 
-disponibilizado através do `ControllerBase`.
+para representar esse tipo de resposta.
 
 ---
 
 ## Organizando Requests e Responses
 
-Para organizar as classes utilizadas na comunicação da API, foi criada uma pasta:
-
-```text
-Communication
-```
-
-Dentro dela podemos separar:
+Para organizar melhor as classes responsáveis pela comunicação da API, podemos criar:
 
 ```text
 Communication
@@ -163,23 +110,22 @@ Communication
 └── Responses
 ```
 
-A ideia é:
+A ideia é separar:
 
 ```text
 Requests
-    │
-    └── Dados que entram na API
-
+   ↓
+Dados que entram na API
 
 Responses
-    │
-    └── Dados que a API devolve
+   ↓
+Dados que saem da API
 ```
 
-Assim:
+Fluxo:
 
 ```text
-CLIENTE
+Cliente
    │
    │ Request
    ▼
@@ -187,16 +133,14 @@ CLIENTE
    │
    │ Response
    ▼
-CLIENTE
+Cliente
 ```
 
 ---
 
 ## Criando uma classe de Request
 
-Como queremos cadastrar um usuário, precisamos definir quais informações o cliente deverá enviar.
-
-No exemplo:
+Para cadastrar um usuário, podemos precisar receber:
 
 ```text
 Nome
@@ -204,35 +148,7 @@ E-mail
 Senha
 ```
 
-Podemos criar uma classe dentro de:
-
-```text
-Communication/Requests
-```
-
-Com um nome significativo, como apresentado na aula:
-
-```csharp
-RegisterUserRequestJson
-```
-
-A palavra:
-
-```text
-Request
-```
-
-deixa claro que essa classe representa dados que serão **recebidos pela API**.
-
-E:
-
-```text
-Json
-```
-
-indica o formato utilizado na comunicação apresentada.
-
-Exemplo:
+Podemos criar uma classe:
 
 ```csharp
 public class RegisterUserRequestJson
@@ -243,7 +159,7 @@ public class RegisterUserRequestJson
 }
 ```
 
-Portanto:
+Essa classe representa os dados esperados na requisição.
 
 ```text
 RegisterUserRequestJson
@@ -253,9 +169,25 @@ RegisterUserRequestJson
 └── Password
 ```
 
+O nome deixa claro:
+
+```text
+RegisterUser
+    ↓
+Registrar usuário
+
+Request
+    ↓
+Dados recebidos
+
+Json
+    ↓
+Formato utilizado na comunicação
+```
+
 ---
 
-## Inicializando Strings com String.Empty
+## Evitando valores null com string.Empty
 
 Ao declarar:
 
@@ -263,19 +195,19 @@ Ao declarar:
 public string Name { get; set; }
 ```
 
-o Visual Studio pode apresentar um aviso relacionado à possibilidade de a propriedade possuir:
+a propriedade pode inicialmente possuir:
 
 ```csharp
 null
 ```
 
-Imagine:
+Por exemplo:
 
 ```csharp
 var request = new RegisterUserRequestJson();
 ```
 
-Nenhum valor foi informado para:
+Nesse caso, se nenhuma informação for atribuída, propriedades como:
 
 ```text
 Name
@@ -283,7 +215,9 @@ Email
 Password
 ```
 
-No exemplo apresentado na aula, uma forma utilizada para evitar que essas propriedades comecem como `null` é inicializá-las com:
+podem não possuir valor.
+
+Na abordagem apresentada na aula, podemos inicializar com:
 
 ```csharp
 string.Empty
@@ -295,49 +229,31 @@ Exemplo:
 public string Name { get; set; } = string.Empty;
 ```
 
-Fazemos o mesmo para as outras propriedades:
+Assim, em vez de:
 
 ```csharp
-public string Name { get; set; } = string.Empty;
-
-public string Email { get; set; } = string.Empty;
-
-public string Password { get; set; } = string.Empty;
-```
-
-Assim, inicialmente:
-
-```text
-Name
-↓
-""
-
-Email
-↓
-""
-
-Password
-↓
-""
-```
-
-em vez de:
-
-```text
 null
 ```
+
+o valor inicial será:
+
+```text
+""
+```
+
+ou seja, uma string vazia.
 
 ---
 
 ## null x string.Empty
 
-Conceitualmente:
+Temos:
 
 ```csharp
 null
 ```
 
-significa ausência de uma referência/valor.
+representando ausência de valor.
 
 Enquanto:
 
@@ -345,25 +261,33 @@ Enquanto:
 string.Empty
 ```
 
-representa uma string vazia:
+representa:
 
 ```text
 ""
 ```
 
-Na situação mostrada na aula, inicializar com:
+uma string vazia.
 
-```csharp
+Conceitualmente:
+
+```text
+null
+↓
+Sem valor
+
 string.Empty
+↓
+String existente, porém vazia
 ```
-
-evita tentar executar operações de `string` sobre uma propriedade que esteja `null`.
 
 ---
 
 ## Recebendo dados pelo Body
 
-Agora podemos utilizar nossa classe como parâmetro do Endpoint:
+Agora podemos utilizar a classe de Request como parâmetro do Endpoint.
+
+Exemplo:
 
 ```csharp
 [HttpPost]
@@ -373,15 +297,7 @@ public IActionResult Create(RegisterUserRequestJson request)
 }
 ```
 
-Nesse caso, queremos receber um objeto contendo:
-
-```text
-Name
-Email
-Password
-```
-
-através do:
+Os dados serão enviados através do:
 
 ```text
 Body
@@ -389,22 +305,21 @@ Body
 
 da requisição.
 
-Essa é a terceira forma de envio de informações apresentada nas aulas:
+Essa é a terceira forma de envio de informações estudada:
 
 ```text
-Dados para um Endpoint
-         │
-    ┌────┼─────┐
-    │    │     │
-    ▼    ▼     ▼
-  URL  Header Body
+Dados da requisição
+        │
+   ┌────┼────┐
+   │    │    │
+   ▼    ▼    ▼
+  URL Header Body
 ```
 
 Nas aulas anteriores vimos:
 
 ```text
 URL
-│
 ├── Query String
 └── Path
 
@@ -412,63 +327,63 @@ Headers
 └── Cabeçalho
 ```
 
-Agora temos:
+Agora:
 
 ```text
 Body
-└── Corpo da Request
+└── Corpo da requisição
 ```
 
 ---
 
-## Estrutura da Request
+## Estrutura do Request Body
 
-Para cadastrar um usuário, teremos conceitualmente:
-
-```text
-POST /api/user
-       │
-       ▼
-Request Body
-       │
-       ▼
-{
-  "name": "...",
-  "email": "...",
-  "password": "..."
-}
-```
-
-O ASP.NET Core recebe esses dados e os disponibiliza através do objeto:
-
-```csharp
-request
-```
-
-Então:
-
-```text
-JSON
- │
- ▼
-RegisterUserRequestJson
- │
- ├── request.Name
- ├── request.Email
- └── request.Password
-```
-
----
-
-## Testando o POST pelo Swagger
-
-Ao executar a aplicação, o Swagger identifica o Endpoint:
+Uma requisição poderia ser:
 
 ```http
 POST /api/user
 ```
 
-Ao expandi-lo, podemos visualizar:
+Body:
+
+```json
+{
+  "name": "Wellison",
+  "email": "wellison@wellison.com",
+  "password": "12345678"
+}
+```
+
+O ASP.NET Core transforma esses dados no objeto:
+
+```csharp
+request
+```
+
+Assim:
+
+```text
+JSON
+ ↓
+RegisterUserRequestJson
+ ↓
+request
+ ├── Name
+ ├── Email
+ └── Password
+```
+
+---
+
+## Testando pelo Swagger
+
+Ao executar a aplicação, o Swagger identifica:
+
+```http
+POST /api/user
+```
+
+e passa a exibir um:
 
 ```text
 Request Body
@@ -476,7 +391,7 @@ Request Body
 
 com a estrutura esperada.
 
-Por exemplo:
+Exemplo:
 
 ```json
 {
@@ -486,15 +401,13 @@ Por exemplo:
 }
 ```
 
-Utilizando:
+Podemos utilizar:
 
 ```text
 Try it out
 ```
 
-podemos substituir os valores.
-
-Exemplo:
+e informar:
 
 ```json
 {
@@ -510,73 +423,21 @@ Depois:
 Execute
 ```
 
-A requisição é enviada para o Endpoint.
+A requisição será enviada para o Endpoint.
 
 ---
 
-## Recebimento do JSON
+## Testando pelo Postman
 
-Se colocarmos um breakpoint:
+No Postman:
 
-```csharp
-[HttpPost]
-public IActionResult Create(RegisterUserRequestJson request)
-{
-    // breakpoint
-
-    return Created();
-}
-```
-
-podemos analisar:
-
-```csharp
-request
-```
-
-e encontrar:
-
-```text
-request
-│
-├── Name     = "Wellison"
-├── Email    = "wellison@wellison.com"
-└── Password = "12345678"
-```
-
-Ou seja, o JSON enviado no Body foi transformado em um objeto C#.
-
-Fluxo:
-
-```text
-JSON enviado
-      │
-      ▼
-Request Body
-      │
-      ▼
-ASP.NET Core
-      │
-      ▼
-RegisterUserRequestJson
-      │
-      ▼
-request
-```
-
----
-
-## Testando o POST pelo Postman
-
-Também podemos realizar a mesma requisição através do Postman.
-
-Primeiro selecionamos:
+### Método HTTP
 
 ```http
 POST
 ```
 
-E utilizamos a URL:
+### URL
 
 ```text
 https://localhost:7081/api/user
@@ -594,13 +455,13 @@ Selecionamos:
 raw
 ```
 
-e garantimos que o formato utilizado seja:
+e definimos o formato:
 
 ```text
 JSON
 ```
 
-Então podemos enviar:
+Exemplo:
 
 ```json
 {
@@ -610,15 +471,17 @@ Então podemos enviar:
 }
 ```
 
-Finalmente:
+Ao clicar em:
 
 ```text
 Send
 ```
 
+o JSON será enviado no Body da requisição.
+
 ---
 
-## JSON no Body da Request
+## JSON no Body
 
 Um objeto JSON utiliza:
 
@@ -626,8 +489,6 @@ Um objeto JSON utiliza:
 {
 }
 ```
-
-para delimitar o objeto.
 
 Exemplo:
 
@@ -637,7 +498,7 @@ Exemplo:
 }
 ```
 
-Para múltiplas propriedades:
+Para várias propriedades:
 
 ```json
 {
@@ -647,66 +508,13 @@ Para múltiplas propriedades:
 }
 ```
 
-A estrutura básica é:
+Estrutura:
 
 ```text
 {
-  "propriedade": "valor",
   "propriedade": "valor"
 }
 ```
-
-No nosso caso:
-
-```text
-JSON
-│
-├── name
-├── email
-└── password
-```
-
-corresponde à classe:
-
-```text
-RegisterUserRequestJson
-│
-├── Name
-├── Email
-└── Password
-```
-
----
-
-## Created e o retorno 204
-
-Na situação demonstrada na aula, foi utilizado inicialmente:
-
-```csharp
-return Created();
-```
-
-sem nenhum argumento.
-
-Ao testar, a resposta observada foi:
-
-```http
-204 No Content
-```
-
-A explicação apresentada é que essa chamada sem conteúdo representa uma operação bem-sucedida, porém sem nenhuma informação para devolver.
-
-```text
-Operação concluída
-       │
-       ▼
-Nenhum conteúdo retornado
-       │
-       ▼
-204 No Content
-```
-
-Para retornar efetivamente uma resposta de criação com conteúdo, a aula passa a utilizar outra sobrecarga de `Created`.
 
 ---
 
@@ -718,9 +526,9 @@ Ao analisar o método:
 Created
 ```
 
-dentro de `ControllerBase`, existem diferentes versões com o mesmo nome.
+existem diferentes versões desse mesmo método.
 
-Por exemplo, conceitualmente:
+Por exemplo:
 
 ```text
 Created()
@@ -728,11 +536,7 @@ Created(string uri, object value)
 Created(Uri uri, object value)
 ```
 
-Isso introduz um conceito importante do C#:
-
-> Podemos possuir métodos com o **mesmo nome**, desde que tenham listas de parâmetros diferentes.
-
-Isso é chamado de:
+Isso representa um conceito importante do C#:
 
 ```text
 Sobrecarga de métodos
@@ -744,7 +548,9 @@ ou:
 Method Overloading
 ```
 
-Exemplo conceitual:
+A sobrecarga permite criar métodos com o **mesmo nome**, desde que possuam parâmetros diferentes.
+
+Exemplo:
 
 ```csharp
 Metodo()
@@ -752,69 +558,49 @@ Metodo(string texto)
 Metodo(int numero)
 ```
 
-Todos possuem o mesmo nome:
-
-```text
-Metodo
-```
-
-mas parâmetros diferentes.
+O compilador consegue identificar qual versão deve ser utilizada com base nos parâmetros enviados.
 
 ---
 
-## Como o C# diferencia as sobrecargas?
+## Created e retorno com conteúdo
 
-O compilador observa os parâmetros.
-
-Por exemplo:
+Na aula, ao utilizar:
 
 ```csharp
-Created()
+return Created();
 ```
 
-é diferente de:
+sem parâmetros, a resposta observada foi:
+
+```http
+204 No Content
+```
+
+Ou seja:
+
+```text
+Operação concluída
+        ↓
+Sem conteúdo para retornar
+        ↓
+204 No Content
+```
+
+Para retornar um conteúdo junto com a criação, foi utilizada outra sobrecarga:
 
 ```csharp
 Created(string uri, object value)
 ```
 
-que também é diferente de uma versão cuja assinatura utiliza:
-
-```csharp
-Uri
-```
-
-em vez de:
-
-```csharp
-string
-```
-
-Portanto:
-
-```text
-Mesmo nome
-    +
-Parâmetros diferentes
-    ↓
-Sobrecarga
-```
-
----
-
-## Retornando dados com Created
-
-Na forma utilizada durante a aula, `Created` recebe uma URI e o conteúdo da resposta.
-
-Como não será utilizada uma URI específica no exemplo, foi passado:
+Como não foi utilizada uma URI específica, a aula utilizou:
 
 ```csharp
 string.Empty
 ```
 
-como primeiro argumento.
+como primeiro parâmetro.
 
-Depois passamos o objeto da resposta:
+Exemplo:
 
 ```csharp
 return Created(string.Empty, response);
@@ -823,55 +609,22 @@ return Created(string.Empty, response);
 Temos:
 
 ```text
-Created(
-    string.Empty,
-    response
-)
-```
-
-Onde:
-
-```text
 string.Empty
-     │
-     └── URI vazia utilizada no exemplo
+     ↓
+URI vazia
 
 response
-     │
-     └── Dados retornados
+     ↓
+Conteúdo retornado
 ```
 
 ---
 
 ## Criando uma classe de Response
 
-Agora precisamos definir quais informações serão devolvidas após cadastrar o usuário.
+Agora podemos criar uma classe específica para representar o que será devolvido pela API.
 
-Para isso, dentro de:
-
-```text
-Communication
-```
-
-criamos:
-
-```text
-Responses
-```
-
-Nossa estrutura fica:
-
-```text
-Communication
-│
-├── Requests
-│   └── RegisterUserRequestJson.cs
-│
-└── Responses
-    └── RegisterUserResponseJson.cs
-```
-
-A classe de Response pode possuir:
+Exemplo:
 
 ```csharp
 public class RegisterUserResponseJson
@@ -882,7 +635,7 @@ public class RegisterUserResponseJson
 }
 ```
 
-Portanto:
+Estrutura:
 
 ```text
 RegisterUserResponseJson
@@ -895,15 +648,15 @@ RegisterUserResponseJson
 
 ## Request x Response
 
-Agora temos uma separação clara.
+Agora temos:
 
 ### Request
-
-Representa os dados recebidos:
 
 ```csharp
 RegisterUserRequestJson
 ```
+
+contendo:
 
 ```text
 Name
@@ -913,11 +666,11 @@ Password
 
 ### Response
 
-Representa os dados devolvidos:
-
 ```csharp
 RegisterUserResponseJson
 ```
+
+contendo:
 
 ```text
 Id
@@ -929,20 +682,22 @@ Fluxo:
 ```text
 CLIENTE
    │
-   │ RegisterUserRequestJson
+   ▼
+RegisterUserRequestJson
+│
+├── Name
+├── Email
+└── Password
    │
-   │ Name
-   │ Email
-   │ Password
    ▼
   API
    │
-   │ Cadastra usuário
    ▼
 RegisterUserResponseJson
+│
+├── Id
+└── Name
    │
-   │ Id
-   │ Name
    ▼
 CLIENTE
 ```
@@ -951,7 +706,7 @@ CLIENTE
 
 ## Criando o objeto de Response
 
-Dentro do Endpoint podemos criar:
+Dentro do Endpoint:
 
 ```csharp
 var response = new RegisterUserResponseJson
@@ -961,34 +716,32 @@ var response = new RegisterUserResponseJson
 };
 ```
 
-Observe que:
+Aqui:
 
 ```csharp
-Name = request.Name
+request.Name
 ```
 
-utiliza uma informação recebida através da Request.
+vem dos dados enviados pelo cliente.
 
-Portanto:
+Fluxo:
 
 ```text
-REQUEST
-
+Request
 Name = "Wellison"
       │
       ▼
 Processamento
       │
       ▼
-RESPONSE
-
+Response
 Id   = 1
 Name = "Wellison"
 ```
 
 ---
 
-## Retornando o Response
+## Retornando 201 Created
 
 Depois:
 
@@ -996,56 +749,42 @@ Depois:
 return Created(string.Empty, response);
 ```
 
-O fluxo passa a ser:
+Agora temos:
 
 ```text
-POST /api/user
-      │
-      ▼
-Request Body
-      │
-      ▼
-RegisterUserRequestJson
-      │
-      ▼
-Create()
-      │
-      ▼
-Cria RegisterUserResponseJson
-      │
-      ▼
-Created(string.Empty, response)
-      │
-      ▼
 201 Created
-      │
-      ▼
+      +
 Response Body
+```
+
+Exemplo de resposta:
+
+```json
+{
+  "id": 1,
+  "name": "Wellison"
+}
 ```
 
 ---
 
-## Documentando o retorno 201 no Swagger
+## Documentando a resposta no Swagger
 
-Como aprendemos anteriormente, devemos documentar as respostas possíveis do Endpoint através de:
+Como estudado anteriormente, podemos utilizar:
 
 ```csharp
 [ProducesResponseType]
 ```
 
-Como estamos retornando:
+Para documentar:
 
 ```text
-201 Created
+Status Code
++
+Tipo da resposta
 ```
 
-e o Body possui:
-
-```csharp
-RegisterUserResponseJson
-```
-
-podemos documentar:
+Exemplo:
 
 ```csharp
 [ProducesResponseType(
@@ -1053,7 +792,7 @@ podemos documentar:
     StatusCodes.Status201Created)]
 ```
 
-Exemplo:
+O Endpoint completo pode ficar semelhante a:
 
 ```csharp
 [HttpPost]
@@ -1092,9 +831,7 @@ POST /api/user
 
 ## Swagger: entrada e saída
 
-Agora o Swagger consegue mostrar tanto o formato da entrada quanto o formato da saída.
-
-### Request Body
+### Request
 
 ```json
 {
@@ -1104,7 +841,7 @@ Agora o Swagger consegue mostrar tanto o formato da entrada quanto o formato da 
 }
 ```
 
-### Response — 201 Created
+### Response
 
 ```json
 {
@@ -1113,14 +850,14 @@ Agora o Swagger consegue mostrar tanto o formato da entrada quanto o formato da 
 }
 ```
 
-Isso documenta o contrato do Endpoint:
+Isso representa o contrato do Endpoint:
 
 ```text
 O que enviar?
       ↓
 RegisterUserRequestJson
 
-O que posso receber?
+O que receber?
       ↓
 RegisterUserResponseJson
 
@@ -1131,123 +868,64 @@ Qual Status Code?
 
 ---
 
-## Fluxo completo do POST
+## Fluxo completo
 
-Código conceitual completo:
-
-```csharp
-[HttpPost]
-[ProducesResponseType(
-    typeof(RegisterUserResponseJson),
-    StatusCodes.Status201Created)]
-public IActionResult Create(RegisterUserRequestJson request)
-{
-    var response = new RegisterUserResponseJson
-    {
-        Id = 1,
-        Name = request.Name
-    };
-
-    return Created(string.Empty, response);
-}
-```
-
-Classe de Request:
-
-```csharp
-public class RegisterUserRequestJson
-{
-    public string Name { get; set; } = string.Empty;
-
-    public string Email { get; set; } = string.Empty;
-
-    public string Password { get; set; } = string.Empty;
-}
-```
-
-Classe de Response:
-
-```csharp
-public class RegisterUserResponseJson
-{
-    public int Id { get; set; }
-
-    public string Name { get; set; } = string.Empty;
-}
+```text
+CLIENTE
+   │
+   │ POST /api/user
+   ▼
+Request Body
+   │
+   ▼
+RegisterUserRequestJson
+   │
+   ├── Name
+   ├── Email
+   └── Password
+   │
+   ▼
+Create()
+   │
+   ▼
+Processamento
+   │
+   ▼
+RegisterUserResponseJson
+   │
+   ├── Id
+   └── Name
+   │
+   ▼
+Created(string.Empty, response)
+   │
+   ▼
+201 Created
+   │
+   ▼
+Response Body
+   │
+   ▼
+CLIENTE
 ```
 
 ---
 
-## Visão Geral do Fluxo
+## As formas de envio estudadas até agora
+
+Agora temos três formas principais estudadas:
 
 ```text
-                  CLIENTE
-                     │
-                     │
-                     │ POST /api/user
-                     ▼
-              ┌──────────────┐
-              │ Request Body │
-              └──────┬───────┘
-                     │
-                     ▼
-          RegisterUserRequestJson
-                     │
-          ┌──────────┼──────────┐
-          │          │          │
-          ▼          ▼          ▼
-        Name       Email     Password
-                     │
-                     ▼
-                  Create()
-                     │
-                     ▼
-            Processa o cadastro
-                     │
-                     ▼
-         RegisterUserResponseJson
-                     │
-              ┌──────┴──────┐
-              │             │
-              ▼             ▼
-             Id            Name
-              │             │
-              └──────┬──────┘
-                     ▼
-     Created(string.Empty, response)
-                     │
-                     ▼
-                201 Created
-                     │
-                     ▼
-                Response Body
-                     │
-                     ▼
-                   CLIENTE
+REQUEST
+   │
+   ├── URL
+   │   ├── Query String
+   │   └── Path
+   │
+   ├── Headers
+   │
+   └── Body
 ```
-
----
-
-## As três formas estudadas até agora
-
-Agora podemos juntar as aulas anteriores:
-
-```text
-               DADOS DA REQUEST
-                      │
-          ┌───────────┼───────────┐
-          │           │           │
-          ▼           ▼           ▼
-         URL       HEADERS       BODY
-          │                       │
-    ┌─────┴─────┐                 │
-    │           │                 │
-    ▼           ▼                 ▼
-  Query        Path             JSON
- String
-```
-
-Exemplos:
 
 ### Query String
 
@@ -1289,51 +967,50 @@ POST /api/user
 
 | Conceito | Descrição |
 |---|---|
-| **POST** | Método HTTP utilizado no exemplo para criar um novo recurso |
-| **[HttpPost]** | Identifica o método do Controller como um Endpoint POST |
+| **POST** | Método HTTP utilizado para criar novos recursos |
+| **[HttpPost]** | Identifica um Endpoint como POST |
 | **201 Created** | Status Code utilizado quando um recurso é criado com sucesso |
-| **Body** | Corpo da requisição onde podem ser enviados dados |
+| **Body** | Corpo da requisição |
 | **Request Body** | Dados enviados pelo cliente no corpo da requisição |
-| **JSON** | Formato utilizado no exemplo para enviar e receber objetos |
-| **RegisterUserRequestJson** | Classe que representa os dados necessários para cadastrar um usuário |
-| **Communication/Requests** | Pasta utilizada na organização das classes de entrada |
-| **Communication/Responses** | Pasta utilizada na organização das classes de saída |
-| **string.Empty** | Representa uma string vazia e foi utilizado para inicializar propriedades |
-| **Sobrecarga** | Existência de métodos com o mesmo nome e diferentes parâmetros |
-| **RegisterUserResponseJson** | Classe que representa os dados devolvidos após o cadastro |
-| **Created(...)** | Método utilizado para produzir a resposta de criação |
-| **ProducesResponseType** | Documenta no Swagger o tipo e Status Code da resposta |
-| **Swagger** | Permite visualizar e testar o Request Body e a Response |
-| **Postman** | Permite montar manualmente uma requisição POST com JSON no Body |
+| **JSON** | Formato utilizado para enviar e receber os dados |
+| **RegisterUserRequestJson** | Representa os dados recebidos para cadastrar um usuário |
+| **RegisterUserResponseJson** | Representa os dados retornados após o cadastro |
+| **Communication/Requests** | Organização das classes de entrada |
+| **Communication/Responses** | Organização das classes de saída |
+| **string.Empty** | Representa uma string vazia |
+| **Sobrecarga** | Métodos com o mesmo nome e parâmetros diferentes |
+| **Created(...)** | Cria uma resposta relacionada ao recurso criado |
+| **ProducesResponseType** | Documenta o Status Code e o tipo da resposta no Swagger |
+| **Swagger** | Permite testar e documentar a Request e a Response |
+| **Postman** | Permite criar manualmente requisições HTTP com Body JSON |
 
 ---
 
-## Resumo do fluxo
+## Visão Geral
 
 ```text
 POST /api/user
-       │
-       ▼
-    JSON Body
-       │
-       ▼
+      │
+      ▼
+   JSON Body
+      │
+      ▼
 RegisterUserRequestJson
-       │
-       ▼
-     Create()
-       │
-       ▼
-Criação do usuário
-       │
-       ▼
+      │
+      ▼
+    Create()
+      │
+      ▼
+Processamento
+      │
+      ▼
 RegisterUserResponseJson
-       │
-       ▼
-  201 Created
-       │
-       ▼
-  JSON Response
+      │
+      ▼
+ 201 Created
+      │
+      ▼
+ JSON Response
 ```
 
-> **Em resumo:** no Endpoint `POST`, podemos receber dados através do **Body da Request**. Esses dados em JSON são representados por uma classe de Request, como `RegisterUserRequestJson`. Depois do processamento, podemos criar uma classe específica de Response, como `RegisterUserResponseJson`, e devolver os dados juntamente com o Status Code **201 Created**. Com isso, passamos a ter uma separação clara entre **o que entra na API (Request)** e **o que sai dela (Response)**.
-````
+> **Em resumo:** em um Endpoint `POST`, os dados podem ser enviados através do **Body da Request**. Esses dados são representados por uma classe específica de Request. Após o processamento, podemos construir uma classe de Response e retornar **201 Created** com os dados desejados. Isso cria uma separação clara entre **dados de entrada (Request)** e **dados de saída (Response)**.
