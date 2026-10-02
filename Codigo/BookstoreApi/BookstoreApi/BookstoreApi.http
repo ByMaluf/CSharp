@@ -1,0 +1,37 @@
+@BookstoreApi_HostAddress = http://localhost:5164
+
+### Criar livro
+POST {{BookstoreApi_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "title": "O Hobbit",
+  "author": "J. R. R. Tolkien",
+  "genre": "fantasia",
+  "price": 49.90,
+  "stock": 10
+}
+
+### Listar todos
+GET {{BookstoreApi_HostAddress}}/api/books
+
+### Filtrar
+GET {{BookstoreApi_HostAddress}}/api/books?genre=fantasia&inStock=true
+
+### Buscar por ID
+GET {{BookstoreApi_HostAddress}}/api/books/00000000-0000-0000-0000-000000000000
+
+### Atualizar
+PUT {{BookstoreApi_HostAddress}}/api/books/00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+
+{
+  "title": "O Hobbit - Edição Especial",
+  "author": "J. R. R. Tolkien",
+  "genre": "fantasia",
+  "price": 59.90,
+  "stock": 8
+}
+
+### Excluir
+DELETE {{BookstoreApi_HostAddress}}/api/books/00000000-0000-0000-0000-000000000000
