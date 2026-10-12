@@ -1,0 +1,36 @@
+@TaskManagerApi_HostAddress = http://localhost:5188
+
+### Criar tarefa
+POST {{TaskManagerApi_HostAddress}}/api/tasks
+Content-Type: application/json
+
+{
+  "name": "Estudar arquitetura em camadas",
+  "description": "Revisar Controllers, Services, Requests e Responses",
+  "priority": "high",
+  "dueDate": "2030-12-31T18:00:00",
+  "status": "pending"
+}
+
+### Listar tarefas
+GET {{TaskManagerApi_HostAddress}}/api/tasks
+Accept: application/json
+
+### Buscar por ID
+GET {{TaskManagerApi_HostAddress}}/api/tasks/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+### Atualizar tarefa
+PUT {{TaskManagerApi_HostAddress}}/api/tasks/00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+
+{
+  "name": "Estudar arquitetura em camadas",
+  "description": "Conteúdo revisado",
+  "priority": "medium",
+  "dueDate": "2030-12-31T20:00:00",
+  "status": "inProgress"
+}
+
+### Excluir tarefa
+DELETE {{TaskManagerApi_HostAddress}}/api/tasks/00000000-0000-0000-0000-000000000000
